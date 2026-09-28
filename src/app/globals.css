@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/* Design system: 6-stop white gradient, sharp corners, 0.3s transitions. */
+:root {
+  --g1: #ffffff;
+  --g2: #fafafb;
+  --g3: #f4f5f7;
+  --g4: #edeff2;
+  --g5: #e5e8ec;
+  --g6: #dce0e5;
+  --gradient: linear-gradient(135deg, var(--g1) 0%, var(--g2) 20%, var(--g3) 40%, var(--g4) 60%, var(--g5) 80%, var(--g6) 100%);
+  --gradient-poster: linear-gradient(180deg, var(--g1), var(--g2), var(--g3), var(--g4), var(--g5), var(--g6));
+}
+
+@theme inline {
+  --color-ink: #0b0b0c;
+  --color-muted: #5a5f66;
+  --color-line: #d0d4da;
+  --color-surface: #ffffff;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --radius-*: initial;
+  --ease-sharp: cubic-bezier(0.4, 0, 0.2, 1);
+  --default-transition-duration: 300ms;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+}
+
+body {
+  background: var(--gradient) fixed;
+  color: var(--color-ink);
+}
+
+@utility bg-brand-gradient {
+  background: var(--gradient);
+}
+
+@utility bg-poster {
+  background: var(--gradient-poster);
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-2 border border-ink bg-ink px-4 py-2 text-sm text-white transition-colors hover:bg-white hover:text-ink cursor-pointer;
+  }
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border border-ink bg-transparent px-4 py-2 text-sm text-ink transition-colors hover:bg-ink hover:text-white cursor-pointer;
+  }
+  .link {
+    @apply border-b border-transparent pb-0.5 text-muted transition-colors hover:border-ink hover:text-ink;
+  }
+  .panel {
+    @apply border border-line bg-surface;
+  }
+  .eyebrow {
+    @apply text-[11px] tracking-[0.12em] uppercase text-muted;
+  }
+  .field {
+    @apply w-full border border-line bg-white px-3 py-2 text-sm outline-none transition-colors focus:border-ink;
+  }
+}
